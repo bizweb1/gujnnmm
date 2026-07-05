@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark">
+<title>Mi Corrido Es Mi Legado — Convierte tu historia en un corrido</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rye&family=Zilla+Slab:wght@400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --walnut:#2B1D14;
+    --walnut-deep:#1C120B;
+    --oxblood:#7A2118;
+    --oxblood-bright:#C4362A;
+    --brass:#C9974D;
+    --brass-bright:#E8C387;
+    --parchment:#F3E7CE;
+    --parchment-dim:#D8C39B;
+    --copper:#8C5A3C;
+    --sunset1:#3A1E12;
+    --sunset2:#7A2118;
+    --sunset3:#C9974D;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth; background-color:#1C120B;}
+  body{
+    background-color:#1C120B;
+    color:#F3E7CE;
+    font-family:'Zilla Slab', serif;
+    line-height:1.65;
+    overflow-x:hidden;
+    min-height:100vh;
+    font-size:1.02rem;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+  img{max-width:100%; display:block;}
+  .wrap{max-width:640px; margin:0 auto; padding:0 22px;}
+  h1,h2,h3{
+    font-family:'Rye', serif;
+    font-weight:400;
+    line-height:1.15;
+  }
+  .eyebrow{
+    font-family:'Oswald', sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.16em;
+    font-size:0.75rem;
+    font-weight:600;
+    color:var(--brass);
+  }
+  .grain{
+    background-color:#1C120B;
+    min-height:100vh;
+    padding-bottom:90px;
+  }
+
+  /* ===================== HERO ===================== */
+  .hero{
+    position:relative;
+    padding:64px 0 46px;
+    text-align:center;
+    overflow:hidden;
+    background:
+      radial-gradient(ellipse at 50% 18%, rgba(233,178,109,0.5) 0%, rgba(233,178,109,0) 55%),
+      linear-gradient(180deg, #E8965A 0%, #C4573B 22%, #7A2A2A 45%, #3A1E1C 68%, #1C120B 100%);
+  }
+  .sun{
+    position:absolute;
+    top:58px; left:50%;
+    transform:translateX(-50%);
+    width:170px; height:170px;
+    border-radius:50%;
+    background:radial-gradient(circle at 40% 35%, #FFE8B8, #F2B563 55%, #D97C3E 100%);
+    box-shadow:0 0 70px 20px rgba(242,181,99,0.45);
+    opacity:0.9;
+  }
+  .mountains{
+    position:absolute;
+    bottom:0; left:0; right:0;
+    height:120px;
+  }
+  .mountains svg{width:100%; height:100%; display:block;}
+  .guitar-silhouette{
+    position:absolute;
+    bottom:18px; right:-18px;
+    width:120px; opacity:0.5;
+    transform:rotate(-8deg);
+  }
+  .hero-inner{position:relative; z-index:2;}
+  .badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'Oswald',sans-serif;
+    font-size:0.72rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--walnut-deep);
+    background:var(--brass-bright);
+    padding:7px 16px;
+    border-radius:999px;
+    margin-bottom:24px;
+    box-shadow:0 4px 14px rgba(0,0,0,0.3);
+  }
+  .hero h1{
+    color:#FFF6E6;
+    font-size:2.15rem;
+    text-shadow:0 2px 10px rgba(0,0,0,0.5);
+  }
+  .hero .sub{
+    font-family:'Zilla Slab', serif;
+    font-size:1.06rem;
+    color:#FCEBD4;
+    margin-top:16px;
+    max-width:480px;
+    margin-left:auto; margin-right:auto;
+    text-shadow:0 1px 6px rgba(0,0,0,0.4);
+  }
+
+  /* waveform */
+  .waveform{
+    display:flex;
+    align-items:flex-end;
+    justify-content:center;
+    gap:4px;
+    height:38px;
+    margin:26px auto 6px;
+  }
+  .waveform span{
+    width:4px;
+    background:var(--brass-bright);
+    border-radius:2px;
+    animation:wave 1.1s ease-in-out infinite;
+  }
+  .waveform span:nth-child(1){height:14px; animation-delay:0s;}
+  .waveform span:nth-child(2){height:28px; animation-delay:0.1s;}
+  .waveform span:nth-child(3){height:38px; animation-delay:0.2s;}
+  .waveform span:nth-child(4){height:20px; animation-delay:0.3s;}
+  .waveform span:nth-child(5){height:32px; animation-delay:0.4s;}
+  .waveform span:nth-child(6){height:16px; animation-delay:0.5s;}
+  .waveform span:nth-child(7){height:26px; animation-delay:0.6s;}
+  .waveform span:nth-child(8){height:12px; animation-delay:0.7s;}
+  @keyframes wave{
+    0%,100%{transform:scaleY(0.4);}
+    50%{transform:scaleY(1);}
+  }
+
+  .cta-mega{
+    display:inline-block;
+    width:100%;
+    max-width:420px;
+    margin-top:20px;
+    background:linear-gradient(180deg, var(--oxblood-bright), #8C1F17);
+    color:#FFF3E4;
+    font-family:'Oswald', sans-serif;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    font-size:1.15rem;
+    padding:22px 20px;
+    border-radius:8px;
+    text-decoration:none;
+    box-shadow:0 14px 30px rgba(196,54,42,0.5), 0 0 0 1px rgba(255,255,255,0.08) inset;
+    border:none;
+    cursor:pointer;
+    animation:pulse 2.6s ease-in-out infinite;
+  }
+  @keyframes pulse{
+    0%,100%{transform:scale(1);}
+    50%{transform:scale(1.025);}
+  }
+  .cta-mega:active{transform:scale(0.98);}
+
+  .price-flash{
+    margin-top:16px;
+    font-family:'Oswald', sans-serif;
+    font-size:0.85rem;
+    letter-spacing:0.05em;
+    color:#FCEBD4;
+  }
+  .price-flash b{color:var(--brass-bright); font-size:1.1rem;}
+
+  /* ===================== TRUST BAND ===================== */
+  .trust{
+    background:var(--oxblood);
+    padding:16px 0;
+    text-align:center;
+  }
+  .trust .wrap{
+    display:flex;
+    justify-content:center;
+    gap:22px;
+    flex-wrap:wrap;
+    font-family:'Oswald', sans-serif;
+    font-size:0.74rem;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+  }
+
+  /* ===================== SECTION GENERIC ===================== */
+  .section{padding:50px 0;}
+  .section-title{
+    text-align:center;
+    color:var(--brass-bright);
+    font-size:1.65rem;
+    margin-bottom:8px;
+  }
+  .section-sub{
+    text-align:center;
+    color:var(--parchment-dim);
+    font-size:0.94rem;
+    margin-bottom:32px;
+  }
+
+  /* ===================== SAMPLE PLAYER ===================== */
+  .sample-cards{display:flex; flex-direction:column; gap:14px;}
+  .sample-card{
+    background:var(--walnut);
+    border:1px solid var(--copper);
+    border-radius:10px;
+    padding:16px 18px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .play-btn{
+    flex-shrink:0;
+    width:48px; height:48px;
+    border-radius:50%;
+    background:var(--brass);
+    color:var(--walnut-deep);
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.1rem;
+    border:none;
+    cursor:pointer;
+  }
+  .sample-meta{flex:1; min-width:0;}
+  .sample-meta h4{
+    font-family:'Zilla Slab', serif;
+    font-weight:700;
+    font-size:1rem;
+    color:var(--parchment);
+  }
+  .sample-meta p{
+    font-size:0.85rem;
+    color:var(--parchment-dim);
+  }
+  .progress-bar{
+    width:100%;
+    height:4px;
+    background:rgba(255,255,255,0.12);
+    border-radius:2px;
+    margin-top:8px;
+    overflow:hidden;
+  }
+  .progress-fill{
+    height:100%;
+    width:0%;
+    background:var(--brass-bright);
+    border-radius:2px;
+  }
+  .play-btn.playing{background:var(--oxblood-bright); color:#FFF3E4;}
+  .sample-note{
+    text-align:center;
+    font-size:0.82rem;
+    color:var(--parchment-dim);
+    margin-top:16px;
+    font-style:italic;
+  }
+
+  /* ===================== PROCESS FLOW ===================== */
+  .flow{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
+  .flow-step{
+    width:100%;
+    max-width:440px;
+    background:var(--walnut);
+    border:1px solid var(--copper);
+    border-radius:10px;
+    padding:18px 20px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .flow-step .num{
+    font-size:1.6rem;
+    flex-shrink:0;
+  }
+  .flow-step h3{
+    font-family:'Zilla Slab', serif;
+    font-weight:700;
+    font-size:1.02rem;
+    color:var(--parchment);
+  }
+  .flow-step.free h3{color:var(--brass-bright);}
+  .flow-arrow{
+    font-size:1.4rem;
+    color:var(--brass);
+    margin:6px 0;
+  }
+
+  /* ===================== PRICING CARD ===================== */
+  .pricing-card{
+    position:relative;
+    background:linear-gradient(155deg, #D4A65E 0%, #B4823F 45%, #97672E 100%);
+    border-radius:10px;
+    padding:32px 26px;
+    box-shadow:0 16px 34px rgba(0,0,0,0.45);
+  }
+  .pricing-card h3{
+    color:var(--walnut-deep);
+    font-size:1.5rem;
+    text-align:center;
+  }
+  .pricing-card .amt{
+    text-align:center;
+    font-family:'Rye', serif;
+    font-size:2.6rem;
+    color:var(--oxblood);
+    margin:8px 0 20px;
+  }
+  .pricing-list{list-style:none;}
+  .pricing-list li{
+    font-family:'Zilla Slab', serif;
+    color:#3A2A16;
+    font-size:0.98rem;
+    padding:9px 0;
+    border-bottom:1px dashed rgba(58,42,22,0.25);
+    display:flex;
+    gap:10px;
+  }
+  .pricing-list li:last-child{border-bottom:none;}
+  .pricing-list li::before{content:"✔"; color:var(--oxblood); font-weight:700;}
+
+  /* ===================== FORM ===================== */
+  .form-plaque{
+    background:var(--walnut);
+    border:1px solid var(--copper);
+    border-radius:8px;
+    padding:28px 20px;
+    position:relative;
+  }
+  .field{margin-bottom:17px;}
+  .field label{
+    display:block;
+    font-family:'Oswald', sans-serif;
+    font-size:0.72rem;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--brass);
+    margin-bottom:7px;
+  }
+  .field input, .field textarea, .field select{
+    width:100%;
+    background:var(--walnut-deep);
+    border:1px solid var(--copper);
+    color:var(--parchment);
+    font-family:'Zilla Slab', serif;
+    font-size:1rem;
+    padding:13px 14px;
+    border-radius:4px;
+  }
+  .field textarea{min-height:110px; resize:vertical;}
+  .field input:focus, .field textarea:focus, .field select:focus{
+    outline:2px solid var(--brass);
+    outline-offset:1px;
+  }
+  .submit-btn{
+    width:100%;
+    background:var(--oxblood-bright);
+    color:#FFF3E4;
+    font-family:'Oswald', sans-serif;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    font-size:1rem;
+    padding:17px;
+    border-radius:6px;
+    border:none;
+    cursor:pointer;
+    margin-top:6px;
+  }
+  .form-note{
+    text-align:center;
+    font-size:0.82rem;
+    color:var(--parchment-dim);
+    margin-top:14px;
+  }
+
+  /* ===================== TESTIMONIALS EMPTY STATE ===================== */
+  .testimonial-empty{
+    text-align:center;
+    border:1px dashed var(--copper);
+    border-radius:10px;
+    padding:30px 22px;
+    color:var(--parchment-dim);
+    font-size:0.92rem;
+  }
+  .testimonial-empty strong{color:var(--brass-bright); display:block; margin-bottom:6px; font-family:'Oswald',sans-serif; letter-spacing:0.04em; text-transform:uppercase; font-size:0.78rem;}
+
+  /* ===================== FAQ ===================== */
+  .faq-item{
+    border-bottom:1px solid rgba(201,151,77,0.3);
+  }
+  .faq-q{
+    width:100%;
+    background:none;
+    border:none;
+    color:var(--parchment);
+    font-family:'Zilla Slab', serif;
+    font-weight:600;
+    font-size:1rem;
+    text-align:left;
+    padding:18px 4px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    cursor:pointer;
+  }
+  .faq-q .icon{color:var(--brass); font-size:1.2rem; transition:transform 0.2s;}
+  .faq-a{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height 0.25s ease;
+    color:var(--parchment-dim);
+    font-size:0.92rem;
+    padding:0 4px;
+  }
+  .faq-item.open .faq-a{max-height:200px; padding-bottom:16px;}
+  .faq-item.open .faq-q .icon{transform:rotate(45deg);}
+
+  /* ===================== PAY SECTION ===================== */
+  .pay-plaque{
+    text-align:center;
+    background:linear-gradient(155deg, #3A281A, #2B1D14);
+    border:1px solid var(--copper);
+    border-radius:8px;
+    padding:32px 22px;
+  }
+  .pay-plaque h3{color:var(--brass-bright); font-size:1.35rem; margin-bottom:10px;}
+  .pay-plaque p{color:var(--parchment-dim); font-size:0.92rem; margin-bottom:20px;}
+  .pay-btn{
+    display:inline-block;
+    background:var(--brass);
+    color:var(--walnut-deep);
+    font-family:'Oswald', sans-serif;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    padding:15px 30px;
+    border-radius:6px;
+    text-decoration:none;
+  }
+
+  footer{
+    padding:32px 0 30px;
+    text-align:center;
+    color:var(--parchment-dim);
+    font-size:0.82rem;
+  }
+  footer a{color:var(--brass); text-decoration:none;}
+
+  /* ===================== STICKY CTA ===================== */
+  .sticky-cta{
+    position:fixed;
+    left:0; right:0; bottom:0;
+    z-index:50;
+    background:var(--walnut-deep);
+    border-top:1px solid var(--copper);
+    padding:10px 16px calc(10px + env(safe-area-inset-bottom));
+    display:flex;
+    justify-content:center;
+    transform:translateY(120%);
+    transition:transform 0.3s ease;
+  }
+  .sticky-cta.show{transform:translateY(0);}
+  .sticky-cta a{
+    width:100%;
+    max-width:480px;
+    text-align:center;
+    background:var(--oxblood-bright);
+    color:#FFF3E4;
+    font-family:'Oswald', sans-serif;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    padding:14px;
+    border-radius:6px;
+    text-decoration:none;
+  }
+
+  /* ===================== FLOATING WHATSAPP ===================== */
+  .wa-float{
+    position:fixed;
+    right:16px;
+    bottom:82px;
+    z-index:60;
+    width:56px; height:56px;
+    border-radius:50%;
+    background:#25D366;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 8px 20px rgba(0,0,0,0.4);
+    text-decoration:none;
+  }
+  .wa-float svg{width:28px; height:28px;}
+
+  @media (max-width:420px){
+    .hero h1{font-size:1.85rem;}
+    .sun{width:130px; height:130px; top:46px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="grain">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="sun"></div>
+    <div class="guitar-silhouette">
+      <svg viewBox="0 0 100 220" fill="#1C120B">
+        <ellipse cx="50" cy="150" rx="42" ry="55"/>
+        <ellipse cx="50" cy="95" rx="28" ry="34"/>
+        <rect x="44" y="10" width="12" height="90" rx="4"/>
+        <circle cx="50" cy="150" r="14" fill="#3A1E12"/>
+      </svg>
+    </div>
+    <div class="mountains">
+      <svg viewBox="0 0 400 100" preserveAspectRatio="none">
+        <polygon points="0,100 0,60 60,30 120,55 180,20 240,50 300,15 360,45 400,25 400,100" fill="#1C120B"/>
+      </svg>
+    </div>
+
+    <div class="wrap hero-inner">
+      <div class="badge">🎸 Corridos personalizados con IA</div>
+      <h1>Tu historia merece sonar como una leyenda</h1>
+      <p class="sub">Creamos un corrido personalizado con IA inspirado en tu vida, tu familia y tus logros.</p>
+
+      <div class="waveform">
+        <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+
+      <a href="#empezar" class="cta-mega">🔥 Empieza tu corrido ahora</a>
+      <div class="price-flash">Solo <b>$35 USD</b> — escuchas antes de pagar</div>
+    </div>
+  </section>
+
+  <!-- TRUST BAND -->
+  <div class="trust">
+    <div class="wrap">
+      <span>🎧 Escucha primero, paga después</span>
+      <span>📱 Entrega por WhatsApp</span>
+      <span>🇲🇽 Hecho para nuestra gente</span>
+    </div>
+  </div>
+
+  <!-- SAMPLE PLAYER -->
+  <section class="section wrap">
+    <h2 class="section-title">Escucha un ejemplo</h2>
+    <p class="section-sub">Así suenan los corridos que creamos.</p>
+    <div class="sample-cards">
+      <div class="sample-card">
+        <button class="play-btn" data-audio="audio-jardinero">▶</button>
+        <div class="sample-meta">
+          <h4>El Jardinero del Sueño</h4>
+          <p>Adelanto de 60 segundos</p>
+          <div class="progress-bar"><div class="progress-fill"></div></div>
+        </div>
+        <audio id="audio-jardinero" src="preview-jardinero.mp3" preload="none"></audio>
+      </div>
+      <div class="sample-card">
+        <button class="play-btn" data-audio="audio-elchera">▶</button>
+        <div class="sample-meta">
+          <h4>El Chera</h4>
+          <p>Adelanto de 60 segundos</p>
+          <div class="progress-bar"><div class="progress-fill"></div></div>
+        </div>
+        <audio id="audio-elchera" src="preview-elchera.mp3" preload="none"></audio>
+      </div>
+      <div class="sample-card">
+        <button class="play-btn" data-audio="audio-hector">▶</button>
+        <div class="sample-meta">
+          <h4>Héctor Manuel Ontiveros</h4>
+          <p>Adelanto de 60 segundos</p>
+          <div class="progress-bar"><div class="progress-fill"></div></div>
+        </div>
+        <audio id="audio-hector" src="preview-hector.mp3" preload="none"></audio>
+      </div>
+      <div class="sample-card">
+        <button class="play-btn" data-audio="audio-caboverde">▶</button>
+        <div class="sample-meta">
+          <h4>Cabo Verde No Se Rajó</h4>
+          <p>Adelanto de 60 segundos</p>
+          <div class="progress-bar"><div class="progress-fill"></div></div>
+        </div>
+        <audio id="audio-caboverde" src="preview-caboverde.mp3" preload="none"></audio>
+      </div>
+    </div>
+    <p class="sample-note">Corridos reales creados para nuestros clientes.</p>
+  </section>
+
+  <!-- PROCESS FLOW -->
+  <section class="section wrap">
+    <h2 class="section-title">Cómo funciona</h2>
+    <p class="section-sub">Sin sorpresas. Así de simple.</p>
+    <div class="flow">
+      <div class="flow-step"><span class="num">1️⃣</span><h3>Cuéntanos tu historia</h3></div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step"><span class="num">2️⃣</span><h3>Creamos tu corrido</h3></div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step free"><span class="num">3️⃣</span><h3>Lo escuchas GRATIS</h3></div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step"><span class="num">4️⃣</span><h3>Si te gusta, pagas</h3></div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step"><span class="num">5️⃣</span><h3>Lo recibes por WhatsApp</h3></div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="section wrap">
+    <div class="pricing-card">
+      <h3>Corrido Personalizado</h3>
+      <div class="amt">$35 USD</div>
+      <ul class="pricing-list">
+        <li>Hasta 3 minutos de duración</li>
+        <li>Letra 100% personalizada</li>
+        <li>Voz profesional con IA</li>
+        <li>Entrega en 24 horas</li>
+        <li>MP3 de alta calidad, sin marca de agua</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- FORM -->
+  <section class="section wrap" id="empezar">
+    <h2 class="section-title">Empieza tu corrido</h2>
+    <p class="section-sub">Entre más detalles nos des, mejor queda tu historia.</p>
+
+    <form class="form-plaque" id="corridoForm">
+      <div class="field">
+        <label for="nombre">¿De quién es la historia?</label>
+        <input type="text" id="nombre" required placeholder="Ej. Mi papá, Don Ramiro">
+      </div>
+
+      <div class="field">
+        <label for="motivo">¿Cuál es la ocasión?</label>
+        <select id="motivo" required>
+          <option value="">Selecciona una opción</option>
+          <option>Cumpleaños</option>
+          <option>Aniversario</option>
+          <option>En memoria de alguien</option>
+          <option>Logro o superación personal</option>
+          <option>Regalo sorpresa</option>
+          <option>Otro</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="estilo">Estilo de corrido</label>
+        <select id="estilo" required>
+          <option value="">Selecciona un estilo</option>
+          <option>Corrido Romántico</option>
+          <option>Corrido Alegre / Fiesta</option>
+          <option>Corrido Bélico</option>
+          <option>Corrido Tumbado</option>
+          <option>No estoy seguro, ustedes recomienden</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="historia">Cuéntanos la historia</label>
+        <textarea id="historia" required placeholder="Comparte los detalles importantes: lugares, fechas, apodos, anécdotas..."></textarea>
+      </div>
+
+      <div class="field">
+        <label for="whatsapp">Tu número de WhatsApp</label>
+        <input type="tel" id="whatsapp" required placeholder="Ej. 650 218 2133">
+      </div>
+
+      <button type="submit" class="submit-btn">🎵 Quiero mi corrido</button>
+      <p class="form-note">Te contactaremos en menos de 24 horas con tu adelanto gratis.</p>
+    </form>
+  </section>
+
+  <!-- TESTIMONIALS EMPTY STATE -->
+  <section class="section wrap">
+    <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+    <div class="testimonial-empty">
+      <strong>Próximamente</strong>
+      Estamos guardando espacio para las historias de nuestros primeros clientes. ¿Serás tú el primero?
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section wrap">
+    <h2 class="section-title">Preguntas frecuentes</h2>
+    <div id="faqList">
+      <div class="faq-item">
+        <button class="faq-q">¿Puedo pedir cambios?<span class="icon">+</span></button>
+        <div class="faq-a">Sí, si algo no te encanta lo ajustamos antes de que pagues.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">¿Cuánto tiempo tarda?<span class="icon">+</span></button>
+        <div class="faq-a">Normalmente recibes tu adelanto en menos de 24 horas.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">¿Puedo regalar un corrido?<span class="icon">+</span></button>
+        <div class="faq-a">Claro — es uno de los regalos favoritos de nuestros clientes.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">¿Puedo elegir banda o corrido?<span class="icon">+</span></button>
+        <div class="faq-a">Sí, eliges el estilo en el formulario: romántico, alegre, bélico o tumbado.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">¿Qué pasa si no me gusta?<span class="icon">+</span></button>
+        <div class="faq-a">No pagas nada. Solo pagas si el resultado te encanta.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAY SECTION -->
+  <section class="section wrap">
+    <div class="pay-plaque">
+      <h3>¿Ya escuchaste tu corrido?</h3>
+      <p>Si ya recibiste tu adelanto y quieres el archivo final, paga aquí de forma segura.</p>
+      <a class="pay-btn" href="https://www.paypal.com/ncp/payment/XB5WG74DVBKHC" target="_blank" rel="noopener">Pagar $35 USD →</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>Mi Corrido Es Mi Legado — Convierte tu historia en leyenda 🎶</p>
+    <p style="margin-top:6px;">¿Dudas? Escríbenos a <a href="https://wa.me/16502182133" target="_blank" rel="noopener">WhatsApp</a></p>
+  </footer>
+
+</div>
+
+<!-- STICKY CTA -->
+<div class="sticky-cta" id="stickyCta">
+  <a href="#empezar">🎵 Crear mi corrido</a>
+</div>
+
+<!-- FLOATING WHATSAPP -->
+<a class="wa-float" href="https://wa.me/16502182133" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 32 32" fill="#fff"><path d="M16 3C9 3 3.4 8.6 3.4 15.6c0 2.4.7 4.7 1.9 6.7L3 29l6.9-2.3c1.9 1 4 1.6 6.1 1.6 7 0 12.6-5.6 12.6-12.6C28.6 8.6 23 3 16 3zm0 22.9c-1.9 0-3.8-.5-5.4-1.5l-.4-.2-4.1 1.4 1.4-4-.3-.4c-1.1-1.7-1.7-3.7-1.7-5.7C5.5 9.8 10.2 5 16 5s10.5 4.8 10.5 10.6S21.8 25.9 16 25.9zm5.8-7.9c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.3-.5-2.5-1.6-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.4.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.2-.7-1.7-1-2.3-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.9-.8 2.1-1.5.3-.7.3-1.4.2-1.5-.1-.2-.3-.2-.6-.4z"/></svg>
+</a>
+
+<script>
+document.getElementById('corridoForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  const nombre = document.getElementById('nombre').value.trim();
+  const motivo = document.getElementById('motivo').value;
+  const estilo = document.getElementById('estilo').value;
+  const historia = document.getElementById('historia').value.trim();
+  const whatsapp = document.getElementById('whatsapp').value.trim();
+
+  const mensaje =
+`🎸 NUEVO PEDIDO — Mi Corrido Es Mi Legado
+
+👤 Historia de: ${nombre}
+🎉 Ocasión: ${motivo}
+🎶 Estilo: ${estilo}
+📱 WhatsApp del cliente: ${whatsapp}
+
+📖 Historia:
+${historia}`;
+
+  window.open("https://wa.me/16502182133?text=" + encodeURIComponent(mensaje), "_blank");
+});
+
+// Audio sample players
+let currentAudio = null;
+let currentBtn = null;
+
+document.querySelectorAll('.play-btn').forEach(btn=>{
+  const audioId = btn.getAttribute('data-audio');
+  const audio = document.getElementById(audioId);
+  const fill = btn.closest('.sample-card').querySelector('.progress-fill');
+
+  btn.addEventListener('click', ()=>{
+    if(currentAudio && currentAudio !== audio){
+      currentAudio.pause();
+      currentAudio.currentTime = 0;
+      currentBtn.textContent = '▶';
+      currentBtn.classList.remove('playing');
+    }
+
+    if(audio.paused){
+      audio.play();
+      btn.textContent = '❚❚';
+      btn.classList.add('playing');
+      currentAudio = audio;
+      currentBtn = btn;
+    } else {
+      audio.pause();
+      btn.textContent = '▶';
+      btn.classList.remove('playing');
+    }
+  });
+
+  audio.addEventListener('timeupdate', ()=>{
+    if(audio.duration){
+      fill.style.width = (audio.currentTime / audio.duration * 100) + '%';
+    }
+  });
+
+  audio.addEventListener('ended', ()=>{
+    btn.textContent = '▶';
+    btn.classList.remove('playing');
+    fill.style.width = '0%';
+  });
+});
+
+// FAQ accordion
+document.querySelectorAll('.faq-q').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    btn.parentElement.classList.toggle('open');
+  });
+});
+
+// Sticky CTA appears after scrolling past hero
+const stickyCta = document.getElementById('stickyCta');
+const heroEl = document.querySelector('.hero');
+window.addEventListener('scroll', ()=>{
+  const heroBottom = heroEl.getBoundingClientRect().bottom;
+  if(heroBottom < 0){
+    stickyCta.classList.add('show');
+  } else {
+    stickyCta.classList.remove('show');
+  }
+});
+</script>
+
+</body>
+</html>
