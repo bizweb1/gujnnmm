@@ -57,37 +57,83 @@
     padding-bottom:90px;
   }
 
+  /* ===================== NAVBAR ===================== */
+  .navbar{
+    position:sticky;
+    top:0;
+    z-index:40;
+    background:rgba(28,18,11,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid rgba(201,151,77,0.25);
+    padding:12px 0;
+  }
+  .navbar .wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    max-width:900px;
+  }
+  .navbar .brand{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-family:'Oswald', sans-serif;
+    font-weight:700;
+    letter-spacing:0.04em;
+    font-size:0.82rem;
+    text-transform:uppercase;
+    color:var(--brass-bright);
+    white-space:nowrap;
+  }
+  .navbar .brand span.sub{
+    display:block;
+    font-size:0.58rem;
+    letter-spacing:0.1em;
+    color:var(--parchment-dim);
+    font-weight:500;
+  }
+  .navbar .links{
+    display:none;
+  }
+  .navbar .nav-cta{
+    background:var(--oxblood-bright);
+    color:#FFF3E4;
+    font-family:'Oswald', sans-serif;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    font-size:0.72rem;
+    padding:10px 16px;
+    border-radius:6px;
+    text-decoration:none;
+    white-space:nowrap;
+  }
+  @media (min-width:760px){
+    .navbar .links{
+      display:flex;
+      gap:22px;
+      font-family:'Oswald', sans-serif;
+      font-size:0.78rem;
+      letter-spacing:0.06em;
+      text-transform:uppercase;
+      color:var(--parchment-dim);
+    }
+    .navbar .links a{text-decoration:none;}
+    .navbar .links a:hover{color:var(--brass-bright);}
+  }
+
   /* ===================== HERO ===================== */
   .hero{
     position:relative;
     padding:64px 0 46px;
     text-align:center;
     overflow:hidden;
-    background:
-      radial-gradient(ellipse at 50% 18%, rgba(233,178,109,0.5) 0%, rgba(233,178,109,0) 55%),
-      linear-gradient(180deg, #E8965A 0%, #C4573B 22%, #7A2A2A 45%, #3A1E1C 68%, #1C120B 100%);
-  }
-  .sun{
-    position:absolute;
-    top:58px; left:50%;
-    transform:translateX(-50%);
-    width:170px; height:170px;
-    border-radius:50%;
-    background:radial-gradient(circle at 40% 35%, #FFE8B8, #F2B563 55%, #D97C3E 100%);
-    box-shadow:0 0 70px 20px rgba(242,181,99,0.45);
-    opacity:0.9;
-  }
-  .mountains{
-    position:absolute;
-    bottom:0; left:0; right:0;
-    height:120px;
-  }
-  .mountains svg{width:100%; height:100%; display:block;}
-  .guitar-silhouette{
-    position:absolute;
-    bottom:18px; right:-18px;
-    width:120px; opacity:0.5;
-    transform:rotate(-8deg);
+    background-image:
+      linear-gradient(180deg, rgba(20,12,7,0.55) 0%, rgba(20,12,7,0.72) 40%, rgba(20,12,7,0.92) 78%, #1C120B 100%),
+      url('hero-bg.jpg');
+    background-size:cover;
+    background-position:center 20%;
   }
   .hero-inner{position:relative; z-index:2;}
   .badge{
@@ -198,6 +244,40 @@
     font-size:0.74rem;
     letter-spacing:0.04em;
     text-transform:uppercase;
+  }
+
+  /* ===================== TRUST CARDS ===================== */
+  .trust-cards{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    padding:24px 0 8px;
+  }
+  .trust-card{
+    background:var(--walnut);
+    border:1px solid var(--copper);
+    border-radius:10px;
+    padding:16px 18px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+  }
+  .trust-card .icon{font-size:1.6rem; flex-shrink:0;}
+  .trust-card h4{
+    font-family:'Oswald', sans-serif;
+    font-size:0.82rem;
+    letter-spacing:0.03em;
+    text-transform:uppercase;
+    color:var(--brass-bright);
+    margin-bottom:3px;
+  }
+  .trust-card p{
+    font-size:0.85rem;
+    color:var(--parchment-dim);
+  }
+  @media (min-width:640px){
+    .trust-cards{flex-direction:row;}
+    .trust-card{flex-direction:column; text-align:center; flex:1;}
   }
 
   /* ===================== SECTION GENERIC ===================== */
@@ -520,23 +600,26 @@
 
 <div class="grain">
 
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="wrap">
+      <div class="brand">
+        🎸 Mi Corrido Es Mi Legado
+        <span class="sub"></span>
+      </div>
+      <div class="links">
+        <a href="#empezar">Inicio</a>
+        <a href="#como-funciona">Cómo funciona</a>
+        <a href="#ejemplos">Ejemplos</a>
+        <a href="#faq">FAQ</a>
+        <a href="#pagar">Contacto</a>
+      </div>
+      <a href="#empezar" class="nav-cta">🔥 Empieza</a>
+    </div>
+  </nav>
+
   <!-- HERO -->
   <section class="hero">
-    <div class="sun"></div>
-    <div class="guitar-silhouette">
-      <svg viewBox="0 0 100 220" fill="#1C120B">
-        <ellipse cx="50" cy="150" rx="42" ry="55"/>
-        <ellipse cx="50" cy="95" rx="28" ry="34"/>
-        <rect x="44" y="10" width="12" height="90" rx="4"/>
-        <circle cx="50" cy="150" r="14" fill="#3A1E12"/>
-      </svg>
-    </div>
-    <div class="mountains">
-      <svg viewBox="0 0 400 100" preserveAspectRatio="none">
-        <polygon points="0,100 0,60 60,30 120,55 180,20 240,50 300,15 360,45 400,25 400,100" fill="#1C120B"/>
-      </svg>
-    </div>
-
     <div class="wrap hero-inner">
       <div class="badge">🎸 Corridos personalizados con IA</div>
       <h1>Tu historia merece sonar como una leyenda</h1>
@@ -551,17 +634,26 @@
     </div>
   </section>
 
-  <!-- TRUST BAND -->
-  <div class="trust">
-    <div class="wrap">
-      <span>🎧 Escucha primero, paga después</span>
-      <span>📱 Entrega por WhatsApp</span>
-      <span>🇲🇽 Hecho para nuestra gente</span>
+  <!-- TRUST CARDS -->
+  <div class="wrap">
+    <div class="trust-cards">
+      <div class="trust-card">
+        <span class="icon">🎧</span>
+        <div><h4>Escucha primero, paga después</h4><p>Tu satisfacción es nuestra prioridad.</p></div>
+      </div>
+      <div class="trust-card">
+        <span class="icon">📱</span>
+        <div><h4>Entrega por WhatsApp</h4><p>Rápido, fácil y directo a tu celular.</p></div>
+      </div>
+      <div class="trust-card">
+        <span class="icon">🇲🇽</span>
+        <div><h4>Hecho para nuestra gente</h4><p>Historias reales, con orgullo y corazón.</p></div>
+      </div>
     </div>
   </div>
 
   <!-- SAMPLE PLAYER -->
-  <section class="section wrap">
+  <section class="section wrap" id="ejemplos">
     <h2 class="section-title">Escucha un ejemplo</h2>
     <p class="section-sub">Así suenan los corridos que creamos.</p>
     <div class="sample-cards">
@@ -606,7 +698,7 @@
   </section>
 
   <!-- PROCESS FLOW -->
-  <section class="section wrap">
+  <section class="section wrap" id="como-funciona">
     <h2 class="section-title">Cómo funciona</h2>
     <p class="section-sub">Sin sorpresas. Así de simple.</p>
     <div class="flow">
@@ -698,7 +790,7 @@
   </section>
 
   <!-- FAQ -->
-  <section class="section wrap">
+  <section class="section wrap" id="faq">
     <h2 class="section-title">Preguntas frecuentes</h2>
     <div id="faqList">
       <div class="faq-item">
@@ -725,7 +817,7 @@
   </section>
 
   <!-- PAY SECTION -->
-  <section class="section wrap">
+  <section class="section wrap" id="pagar">
     <div class="pay-plaque">
       <h3>¿Ya escuchaste tu corrido?</h3>
       <p>Si ya recibiste tu adelanto y quieres el archivo final, paga aquí de forma segura.</p>
